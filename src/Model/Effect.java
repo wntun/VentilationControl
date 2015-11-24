@@ -5,49 +5,31 @@
  */
 package Model;
 
+import java.util.Date;
+
 /**
  *
  * @author wainwetun
  */
 public class Effect {
-    private int idEffect;
-    private float percentage;
-    private Fan fan;
-    private IAQ iaq;
-
-    public int getIdEffect() {
-        return idEffect;
-    }
-
-    public float getPercentage() {
-        return percentage;
-    }
-
-    public Fan getFan() {
-        return fan;
-    }
-
-    public IAQ getIaq() {
-        return iaq;
-    }
-
-    public void setIdEffect(int idEffect) {
-        this.idEffect = idEffect;
-    }
-
-    public void setPercentage(float percentage) {
-        this.percentage = percentage;
-    }
-
-    public void setFan(Fan fan) {
-        this.fan = fan;
-    }
-
-    public void setIaq(IAQ iaq) {
-        this.iaq = iaq;
-    }
     
-    
-    
+    public static void calculateEffect(Fan fan, IAQ iaq){
+        float frequency = fan.getFrequency();
+        float duration = fan.getDuration();
+        float currentIAQ = iaq.getValue();
+        
+        float improved = (frequency*duration)*0.2f;
+        
+        float reducedIAQ = currentIAQ-currentIAQ*improved;
+        
+        Date now = new Date();
+        /*
+        Date[] newTime = new Date[(int)duration];
+        
+        for(int i=0;i<duration; i++){
+            newTime[i] = new Date(now.getTime()+i+1);
+        }    
+                */
+    }
     
 }

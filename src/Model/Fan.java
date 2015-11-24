@@ -15,7 +15,7 @@ public class Fan {
     private float frequency;
     private float duration;
     private float energyConsumption;
-    
+    private float percentageImprovement;
 
     public Fan(){
         this.idFan = 1;
@@ -36,7 +36,8 @@ public class Fan {
         this.state = false;
         this.frequency = 0;
         this.duration = 0;
-        this.energyConsumption = 0;       
+        this.energyConsumption = 0;
+        this.percentageImprovement =0;
     }
     
     public int getIdFan() {
@@ -59,7 +60,10 @@ public class Fan {
         return energyConsumption;
     }
 
-    
+    public float getPercentageImprovement() {
+        return percentageImprovement;
+    }
+
     public void setIdFan(int idFan) {
         this.idFan = idFan;
     }
@@ -80,6 +84,9 @@ public class Fan {
         this.energyConsumption = energyConsumption;
     }
 
+    public void setPercentageImprovement(float percentageImprovement) {
+        this.percentageImprovement = percentageImprovement;
+    }
     
     
     
