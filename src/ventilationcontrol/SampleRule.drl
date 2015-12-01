@@ -1,0 +1,66 @@
+import model.Effect
+import model.EnergyConsumption
+import model.Fan
+import model.IAQ
+import model.Environment
+
+declare Environment
+    @role(event)
+end
+declare EnergyConsumption
+    @role(event)
+end
+declare IAQ
+    @role(event)
+end
+
+rule "IAQ is High"
+when
+    $env: Environment(this.iaq.getValue()>150 && this.fan.isOn()=='false') from entry-point entrypoint 
+then
+    System.err.println("IAQ is high");
+    $env.getFan().setOn(true);
+    $env.calculateFanFacts();
+    $env.display();
+    $env.sleep();
+end
+
+rule "Fan is On"
+when
+    $env: Environment(this.fan.isOn() == 'true') from entry-point entrypoint
+then
+    System.err.println("Fan is On");
+    $env.updateIaqOverTime();
+    $env.display();
+    $env.sleep();
+end
+
+rule "IAQ is Low"
+when
+    $env: Environment(this.iaq.getValue()<=150) from entry-point entrypoint 
+then
+    System.err.println("IAQ is low");
+    $env.turnOffFan();
+    $env.display();
+    $env.sleep();
+end
+
+rule "Energy Consumption is high"
+when
+    $env: Environment(this.energyConsumption.getConsumption()>27) from entry-point entrypoint 
+then
+    System.err.println("Energy Consumption is high.");  
+    $env.reduceEnergyConsumption();
+    $env.display();
+    $env.sleep();
+end
+
+rule "Time for duration is Up"
+when
+    $env: Environment(this.fan.getDuration()==0 && this.fan.isOn()=='true') from entry-point entrypoint
+then
+    System.err.println("Time for duration is Up");
+    $env.turnOffFan();
+    $env.display();
+    $env.sleep();
+end

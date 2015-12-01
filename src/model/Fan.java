@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
+package model;
 
 /**
  *
@@ -11,20 +11,19 @@ package Model;
  */
 public class Fan {
     private int idFan;
-    private boolean state;
+    private boolean on;
     private float frequency;
     private float duration;
-    private float energyConsumption;
-    private float percentageImprovement;
+
 
     public Fan(){
         this.idFan = 1;
-        this.state = false;        
+        this.on = false;        
     }
     
     public Fan(int idFan){
         this.idFan = idFan;
-        this.state = false;
+        this.on = false;
     }
     
     public void turnOn(float frequency, float duration){
@@ -33,19 +32,17 @@ public class Fan {
     }
     
     public void turnOff(){
-        this.state = false;
+        this.on = false;
         this.frequency = 0;
         this.duration = 0;
-        this.energyConsumption = 0;
-        this.percentageImprovement =0;
     }
     
     public int getIdFan() {
         return idFan;
     }
 
-    public boolean isState() {
-        return state;
+    public boolean isOn() {
+        return on;
     }
 
     public float getFrequency() {
@@ -56,20 +53,13 @@ public class Fan {
         return duration;
     }
 
-    public float getEnergyConsumption() {
-        return energyConsumption;
-    }
-
-    public float getPercentageImprovement() {
-        return percentageImprovement;
-    }
 
     public void setIdFan(int idFan) {
         this.idFan = idFan;
     }
 
-    public void setState(boolean state) {
-        this.state = state;
+    public void setOn(boolean state) {
+        this.on = state;
     }
 
     public void setFrequency(float frequency) {
@@ -80,12 +70,10 @@ public class Fan {
         this.duration = duration;
     }
 
-    public void setEnergyConsumption(float energyConsumption) {
-        this.energyConsumption = energyConsumption;
-    }
 
-    public void setPercentageImprovement(float percentageImprovement) {
-        this.percentageImprovement = percentageImprovement;
+    @Override
+    public String toString() {
+        return "Fan{" + "idFan=" + idFan + ", on=" + on + ", frequency=" + frequency + ", duration=" + duration + ", energyConsumption=" + '}';
     }
     
     
